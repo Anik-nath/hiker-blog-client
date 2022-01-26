@@ -185,6 +185,9 @@ const Navigation = () => {
                   </>
                 ) : (
                   <>
+                    <MenuItem onClick={handleCloseUserMenu}>
+                      Email : {user.email}
+                    </MenuItem>
                     <NavLink
                       style={{ textDecoration: "none", color: "inherit" }}
                       to="/dashboard"
@@ -193,7 +196,10 @@ const Navigation = () => {
                         Dashboard
                       </MenuItem>
                     </NavLink>
-                    <Typography sx={{ color: "inherit" }} onClick={handleSignOut}>
+                    <Typography
+                      sx={{ color: "inherit" }}
+                      onClick={handleSignOut}
+                    >
                       <MenuItem onClick={handleCloseUserMenu}>Log out</MenuItem>
                     </Typography>
                   </>

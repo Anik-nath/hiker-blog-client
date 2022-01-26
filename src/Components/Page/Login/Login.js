@@ -1,39 +1,69 @@
-import { Box, Container, Divider, Grid, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Divider,
+  Grid,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React, { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import frame from "../../../images/header-frame.png";
 import loginImg from "../../../images/loginImage1.jpg";
 import google from "../../../images/google.png";
-import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import InstagramIcon from '@mui/icons-material/Instagram';
+import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import InstagramIcon from "@mui/icons-material/Instagram";
 import useAuth from "../../../Firebase/Hook/useAuth";
 
 const Login = () => {
-    const [data,setData] = useState({});
-    const {googleSignIn,login,error} = useAuth();
-  
-    const location = useLocation();
-    const navigate = useNavigate();
-  
-    const handleGoogle = () =>{
-      googleSignIn(location,navigate);
-    }
-  
-    const handleInput = (e) =>{
-      const field = e.target.name;
-      let value = e.target.value;
-      console.log(value);
-      const newField = {...data};
-      newField[field] = value;
-      setData(newField);
-      console.log(newField);
-    }
-  
-    const handleLogin = (e)=>{
-      e.preventDefault();
-      login(data.email,data.password);
-    }
+  const [data, setData] = useState({});
+  const { googleSignIn, login,createUser } = useAuth();
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleGoogle = () => {
+    googleSignIn(location, navigate);
+  };
+
+  const handleInput = (e) => {
+    const field = e.target.name;
+    let value = e.target.value;
+    console.log(value);
+    const newField = { ...data };
+    newField[field] = value;
+    setData(newField);
+    console.log(newField);
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    login(data.email, data.password,location, navigate);
+  };
+  // ---------------------------
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+//   --------------------------
+const handleRegister =(e)=>{
+    e.preventDefault();
+    createUser(data.email,data.password,location, navigate);
+}
+
+
   return (
     <div>
       <div className="aboutCover">
@@ -67,17 +97,25 @@ const Login = () => {
                 >
                   <Box>
                     <Typography
-                      sx={{ color: "#fff", fontWeight: "600",px:14,pt:14 }}
+                      sx={{ color: "#fff", fontWeight: "600", px: 14, pt: 14 }}
                       variant="h6"
                     >
                       TRAVEL IS THE ONLY THING YOU BUY THAT MAKES YOU RICHER
                     </Typography>
                   </Box>
-                  <Box sx={{display:"flex",justifyContent:"center",gap:4,pt:14,color:"#fff"}}>
-                        <FacebookRoundedIcon />
-                        <TwitterIcon />
-                        <InstagramIcon />
-                </Box>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      gap: 4,
+                      pt: 14,
+                      color: "#fff",
+                    }}
+                  >
+                    <FacebookRoundedIcon />
+                    <TwitterIcon />
+                    <InstagramIcon />
+                  </Box>
                 </Box>
               </Box>
             </Grid>
@@ -89,14 +127,8 @@ const Login = () => {
                 >
                   Travel Blog
                 </Typography>
-                <TextField onBlur={handleInput}
-                  fullWidth
-                  name="fullname"
-                  id="fullname"
-                  label="Fullname"
-                  variant="standard"
-                />
-                <TextField onBlur={handleInput}
+                <TextField
+                  onBlur={handleInput}
                   fullWidth
                   type="email"
                   name="email"
@@ -104,7 +136,8 @@ const Login = () => {
                   label="Email"
                   variant="standard"
                 />
-                <TextField onBlur={handleInput}
+                <TextField
+                  onBlur={handleInput}
                   margin="dense"
                   fullWidth
                   type="password"
@@ -113,23 +146,83 @@ const Login = () => {
                   label="Password"
                   variant="standard"
                 />
-                <Typography sx={{ textAlign: "right" }} variant="body2">
-                  Forget Your Password?
+                <Typography sx={{ textAlign: "right", pt: 2 }} variant="body2">
+                  Don't have an account?{" "}
+                  <Button onClick={handleClickOpen}>Register Please</Button>
+                  <Dialog open={open} onClose={handleClose}>
+                    <DialogTitle>Subscribe</DialogTitle>
+                    <DialogContent>
+                      <DialogContentText>
+                        To subscribe to this website, please enter your email
+                        address here. We will send updates occasionally.
+                      </DialogContentText>
+                      <TextField
+                       onBlur={handleInput}
+                  fullWidth
+                  name="fullname"
+                  id="fullname"
+                  label="Fullname"
+                  variant="standard"
+                />
+                      <TextField
+                  onBlur={handleInput}
+                  fullWidth
+                  type="email"
+                  name="email"
+                  id="email"
+                  label="Email"
+                  variant="standard"
+                />
+                <TextField
+                  onBlur={handleInput}
+                  margin="dense"
+                  fullWidth
+                  type="password"
+                  name="password"
+                  id="password"
+                  label="Password"
+                  variant="standard"
+                />
+                    </DialogContent>
+                    <DialogActions>
+                      <Button onClick={handleClose}>Cancel</Button>
+                      <Button onClick={handleRegister}>Create</Button>
+                    </DialogActions>
+                  </Dialog>
                 </Typography>
-                <button onClick={handleLogin} style={{ width: "100%" }} className="ourButton">
+                <button
+                  onClick={handleLogin}
+                  style={{ width: "100%" }}
+                  className="ourButton"
+                >
                   Login
                 </button>
-                <Divider sx={{py:4}}>Or</Divider>
+                <Divider sx={{ py: 4 }}>Or</Divider>
                 <Box>
-                  <button onClick={handleGoogle} style={{ width: "100%",display:"flex",gap:8,alignItems:'center',justifyContent:"center" }} className="ourButton">
-                      <img style={{width:"25px"}} src={google} alt="" />
-                      Continue With Google</button>
+                  <button
+                    onClick={handleGoogle}
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      gap: 8,
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                    className="ourButton"
+                  >
+                    <img style={{ width: "25px" }} src={google} alt="" />
+                    Continue With Google
+                  </button>
                 </Box>
+                <Typography sx={{ textAlign: "center", pt: 4 }} variant="body2">
+                  Happy Travel :)
+                </Typography>
               </Box>
             </Grid>
           </Grid>
         </Box>
       </Container>
+      <Outlet />
     </div>
   );
 };

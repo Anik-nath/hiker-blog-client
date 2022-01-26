@@ -45,12 +45,14 @@ const useFirebase = () =>{
     },[auth])
 
     //create new user
-    const createUser=(email,password)=>{
+    const createUser=(email,password,location,navigate)=>{
         setIsLoading(true);
         createUserWithEmailAndPassword(auth, email, password)
         .then(() => {
             alert('successfully create user')
             setError('');
+            const destination = location?.state?.from || '/';
+            navigate(destination);
         })
         .catch((error) => {
             setError(error.message)
@@ -58,12 +60,14 @@ const useFirebase = () =>{
         .finally(()=> setIsLoading(false))
     }
     //login with email and password
-    const login =(email,password)=>{
+    const login =(email,password,location,navigate)=>{
         setIsLoading(true);
         signInWithEmailAndPassword(auth, email, password)
             .then(() => {
                 alert("login successfully");
                 setError('');
+                const destination = location?.state?.from || '/';
+                navigate(destination);
             })
             .catch((error) => {
                 setError(error.message)

@@ -6,6 +6,7 @@ import Contact from "./Components/Page/Contact/Contact";
 import Destination from "./Components/Page/Destination/Destination";
 import Home from "./Components/Page/Home/Home";
 import Login from "./Components/Page/Login/Login";
+import Register from "./Components/Page/Register/Register";
 import Footer from "./Components/Shared/Footer/Footer";
 import Navigation from "./Components/Shared/Navigation/Navigation";
 import ProvideAuth from "./Firebase/Context/ProvideAuth";
@@ -25,6 +26,7 @@ function App() {
           <Route path="/contact" element={<Contact></Contact>}></Route>
           <Route path="/destination" element={<Destination></Destination>}></Route>
           <Route path="/login" element={<Login></Login>}></Route>
+          <Route path="/register" element={<Register></Register>}></Route>
         </Routes>
         <Footer></Footer>
       </BrowserRouter>
