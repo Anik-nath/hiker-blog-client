@@ -1,14 +1,39 @@
 import { Box, Container, Divider, Grid, TextField, Typography } from "@mui/material";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import frame from "../../../images/header-frame.png";
 import loginImg from "../../../images/loginImage1.jpg";
 import google from "../../../images/google.png";
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import useAuth from "../../../Firebase/Hook/useAuth";
 
 const Login = () => {
+    const [data,setData] = useState({});
+    const {googleSignIn,login,error} = useAuth();
+  
+    const location = useLocation();
+    const navigate = useNavigate();
+  
+    const handleGoogle = () =>{
+      googleSignIn(location,navigate);
+    }
+  
+    const handleInput = (e) =>{
+      const field = e.target.name;
+      let value = e.target.value;
+      console.log(value);
+      const newField = {...data};
+      newField[field] = value;
+      setData(newField);
+      console.log(newField);
+    }
+  
+    const handleLogin = (e)=>{
+      e.preventDefault();
+      login(data.email,data.password);
+    }
   return (
     <div>
       <div className="aboutCover">
@@ -64,30 +89,39 @@ const Login = () => {
                 >
                   Travel Blog
                 </Typography>
-                <TextField
+                <TextField onBlur={handleInput}
                   fullWidth
+                  name="fullname"
+                  id="fullname"
+                  label="Fullname"
+                  variant="standard"
+                />
+                <TextField onBlur={handleInput}
+                  fullWidth
+                  type="email"
                   name="email"
-                  id="Email"
+                  id="email"
                   label="Email"
                   variant="standard"
                 />
-                <TextField
+                <TextField onBlur={handleInput}
                   margin="dense"
                   fullWidth
+                  type="password"
                   name="password"
-                  id="Password"
+                  id="password"
                   label="Password"
                   variant="standard"
                 />
                 <Typography sx={{ textAlign: "right" }} variant="body2">
                   Forget Your Password?
                 </Typography>
-                <button style={{ width: "100%" }} className="ourButton">
+                <button onClick={handleLogin} style={{ width: "100%" }} className="ourButton">
                   Login
                 </button>
                 <Divider sx={{py:4}}>Or</Divider>
                 <Box>
-                  <button style={{ width: "100%",display:"flex",gap:8,alignItems:'center',justifyContent:"center" }} className="ourButton">
+                  <button onClick={handleGoogle} style={{ width: "100%",display:"flex",gap:8,alignItems:'center',justifyContent:"center" }} className="ourButton">
                       <img style={{width:"25px"}} src={google} alt="" />
                       Continue With Google</button>
                 </Box>

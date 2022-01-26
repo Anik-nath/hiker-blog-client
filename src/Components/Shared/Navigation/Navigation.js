@@ -11,6 +11,7 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { NavLink } from "react-router-dom";
+import useAuth from "../../../Firebase/Hook/useAuth";
 
 const Navigation = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -30,7 +31,7 @@ const Navigation = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
+  // ----------------navbar menu list-----------------------
   const navList = (
     <>
       <NavLink to="/home" style={{ textDecoration: "none", color: "inherit" }}>
@@ -38,10 +39,7 @@ const Navigation = () => {
           <Typography variant="button">home</Typography>
         </MenuItem>
       </NavLink>
-      <NavLink
-        to="/blogs"
-        style={{ textDecoration: "none", color: "inherit" }}
-      >
+      <NavLink to="/blogs" style={{ textDecoration: "none", color: "inherit" }}>
         <MenuItem onClick={handleCloseNavMenu}>
           <Typography variant="button">blogs</Typography>
         </MenuItem>
@@ -69,22 +67,28 @@ const Navigation = () => {
       </NavLink>
     </>
   );
-  const [shownavbar,setNavbar] = React.useState(false);
+  // ---------------navbar scroll animation----------------
+  const [shownavbar, setNavbar] = React.useState(false);
+  const changeBackground = () => {
+    if (window.scrollY >= 40) {
+      setNavbar(true);
+    } else {
+      setNavbar(false);
+    }
+  };
+  window.addEventListener("scroll", changeBackground);
+  // -------------authenticaiton-----------------------------
+  const { user, signout } = useAuth();
 
-  const changeBackground = () =>{
-      if(window.scrollY >= 40){
-          setNavbar(true)
-      }
-      else{
-          setNavbar(false);
-      }
-  }
-  window.addEventListener('scroll',changeBackground);
-
+  const handleSignOut = () => {
+    signout();
+  };
+  // -----------------------------------------------------
   return (
     <>
-      <AppBar className={shownavbar && "navActive"}
-        sx={{backgroundColor: "transparent", boxShadow: "none" }}
+      <AppBar
+        className={shownavbar && "navActive"}
+        sx={{ backgroundColor: "transparent", boxShadow: "none" }}
         position="fixed"
       >
         <Container maxWidth="xl">
@@ -151,7 +155,7 @@ const Navigation = () => {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar src="/broken-image.jpg" />
+                  <Avatar src="/broken-image.jpg" />
                 </IconButton>
               </Tooltip>
               <Menu
@@ -170,22 +174,30 @@ const Navigation = () => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                <NavLink
-                  style={{ textDecoration: "none", color: "inherit" }}
-                  to="/dashboard"
-                >
-                  <MenuItem onClick={handleCloseUserMenu}>Dashboard</MenuItem>
-                </NavLink>
-                <NavLink
-                  style={{ textDecoration: "none", color: "inherit" }}
-                  to="/login"
-                >
-                  <MenuItem onClick={handleCloseUserMenu}>Login</MenuItem>
-                </NavLink>
-
-                {/* <Typography sx={{ color: "inherit" }}>
-                  <MenuItem onClick={handleCloseUserMenu}>LogIn</MenuItem>
-                </Typography> */}
+                {!user.email ? (
+                  <>
+                    <NavLink
+                      style={{ textDecoration: "none", color: "inherit" }}
+                      to="/login"
+                    >
+                      <MenuItem onClick={handleCloseUserMenu}>Login</MenuItem>
+                    </NavLink>
+                  </>
+                ) : (
+                  <>
+                    <NavLink
+                      style={{ textDecoration: "none", color: "inherit" }}
+                      to="/dashboard"
+                    >
+                      <MenuItem onClick={handleCloseUserMenu}>
+                        Dashboard
+                      </MenuItem>
+                    </NavLink>
+                    <Typography sx={{ color: "inherit" }} onClick={handleSignOut}>
+                      <MenuItem onClick={handleCloseUserMenu}>Log out</MenuItem>
+                    </Typography>
+                  </>
+                )}
               </Menu>
             </Box>
           </Toolbar>

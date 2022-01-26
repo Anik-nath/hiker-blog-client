@@ -8,16 +8,19 @@ import Home from "./Components/Page/Home/Home";
 import Login from "./Components/Page/Login/Login";
 import Footer from "./Components/Shared/Footer/Footer";
 import Navigation from "./Components/Shared/Navigation/Navigation";
+import ProvideAuth from "./Firebase/Context/ProvideAuth";
+import PrivateRoute from "./Firebase/PrivateRoute/PrivateRoute";
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+     <ProvideAuth>
+     <BrowserRouter>
       <Navigation></Navigation>
         <Routes>
           <Route path="/" element={<Home></Home>}></Route>
           <Route path="/home" element={<Home></Home>}></Route>
-          <Route path="/blogs" element={<Blogs></Blogs>}></Route>
+          <Route path="/blogs" element={<PrivateRoute><Blogs></Blogs></PrivateRoute>}></Route>
           <Route path="/about" element={<About></About>}></Route>
           <Route path="/contact" element={<Contact></Contact>}></Route>
           <Route path="/destination" element={<Destination></Destination>}></Route>
@@ -25,6 +28,7 @@ function App() {
         </Routes>
         <Footer></Footer>
       </BrowserRouter>
+     </ProvideAuth>
     </div>
   );
 }
