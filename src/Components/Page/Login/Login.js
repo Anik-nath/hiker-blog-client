@@ -24,7 +24,7 @@ import useAuth from "../../../Firebase/Hook/useAuth";
 
 const Login = () => {
   const [data, setData] = useState({});
-  const { googleSignIn, login,createUser } = useAuth();
+  const { googleSignIn, login, createUser } = useAuth();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    login(data.email, data.password,location, navigate);
+    login(data.email, data.password, location, navigate);
   };
   // ---------------------------
   const [open, setOpen] = React.useState(false);
@@ -57,12 +57,11 @@ const Login = () => {
   const handleClose = () => {
     setOpen(false);
   };
-//   --------------------------
-const handleRegister =(e)=>{
+  //   --------------------------
+  const handleRegister = (e) => {
     e.preventDefault();
-    createUser(data.email,data.password,location, navigate);
-}
-
+    createUser(data.email, data.password, location, navigate);
+  };
 
   return (
     <div>
@@ -146,47 +145,53 @@ const handleRegister =(e)=>{
                   label="Password"
                   variant="standard"
                 />
-                <Typography sx={{ textAlign: "right", pt: 2 }} variant="body2">
+                <Typography sx={{ textAlign: "center", pt: 2 }} variant="body2">
                   Don't have an account?{" "}
-                  <Button onClick={handleClickOpen}>Register Please</Button>
+                  <Button onClick={handleClickOpen}>
+                    <Typography variant="body2">Register Please</Typography>
+                  </Button>
                   <Dialog open={open} onClose={handleClose}>
-                    <DialogTitle>Subscribe</DialogTitle>
+                    <DialogTitle>Create an account</DialogTitle>
                     <DialogContent>
                       <DialogContentText>
-                        To subscribe to this website, please enter your email
-                        address here. We will send updates occasionally.
+                        To register, please enter your email and password here.
+                        <img src="" alt="" />
                       </DialogContentText>
                       <TextField
-                       onBlur={handleInput}
-                  fullWidth
-                  name="fullname"
-                  id="fullname"
-                  label="Fullname"
-                  variant="standard"
-                />
+                        onBlur={handleInput}
+                        fullWidth
+                        name="fullname"
+                        id="fullname"
+                        label="Fullname"
+                        variant="standard"
+                      />
                       <TextField
-                  onBlur={handleInput}
-                  fullWidth
-                  type="email"
-                  name="email"
-                  id="email"
-                  label="Email"
-                  variant="standard"
-                />
-                <TextField
-                  onBlur={handleInput}
-                  margin="dense"
-                  fullWidth
-                  type="password"
-                  name="password"
-                  id="password"
-                  label="Password"
-                  variant="standard"
-                />
+                        onBlur={handleInput}
+                        fullWidth
+                        type="email"
+                        name="email"
+                        id="email"
+                        label="Email"
+                        variant="standard"
+                      />
+                      <TextField
+                        onBlur={handleInput}
+                        margin="dense"
+                        fullWidth
+                        type="password"
+                        name="password"
+                        id="password"
+                        label="Password"
+                        variant="standard"
+                      />
                     </DialogContent>
                     <DialogActions>
-                      <Button onClick={handleClose}>Cancel</Button>
-                      <Button onClick={handleRegister}>Create</Button>
+                      <button className="ourButton" onClick={handleClose}>
+                        X
+                      </button>
+                      <button className="ourButton" onClick={handleRegister}>
+                        Create
+                      </button>
                     </DialogActions>
                   </Dialog>
                 </Typography>

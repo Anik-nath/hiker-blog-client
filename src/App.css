@@ -146,3 +146,13 @@
 .navActive{
   background-color: #4d8150 !important;
 }
+.home-background{
+  background: url('./images/home-back.jpg');
+  height: 100%;
+  width: 100%;
+}
+.footer-background{
+  background: url('./images/footer-bg.png');
+  background-size: cover;
+  background-color: #fff;
+}

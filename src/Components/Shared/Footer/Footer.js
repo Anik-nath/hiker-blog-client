@@ -6,12 +6,9 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
-      <Box sx={{ py: 6 }}>
+      <Box className="footer-background" sx={{ py: 10 }}>
         <Grid container spacing={{ xs: 2, md: 2 }}>
           <Grid item md={8} sx={{ mx: "auto" }}>
-            <Typography variant="h5" sx={{ pb: 4, fontWeight: "bold" }}>
-              Hiker
-            </Typography>
             <Typography
               variant="h6"
               sx={{ color: "#999", fontWeight: "light", fontStyle: "italic" }}
