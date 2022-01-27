@@ -1,9 +1,11 @@
 import { Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Footer = () => {
+  const location = useLocation();
+  if(!location?.pathname?.includes('dashboard'))
   return (
     <>
       <Box className="footer-background" sx={{ py: 10 }}>
@@ -41,6 +43,7 @@ const Footer = () => {
       </Box>
     </>
   );
+  return null;
 };
 
 export default Footer;

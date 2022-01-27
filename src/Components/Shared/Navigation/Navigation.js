@@ -155,7 +155,11 @@ const Navigation = () => {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar src="/broken-image.jpg" />
+                  
+                  {
+                    user.email ? <Avatar alt="image" src={user.photoURL} />
+                    : <Avatar src="/broken-image.jpg" />
+                  }
                 </IconButton>
               </Tooltip>
               <Menu
@@ -186,8 +190,16 @@ const Navigation = () => {
                 ) : (
                   <>
                     <MenuItem onClick={handleCloseUserMenu}>
-                      Email : {user.email}
+                      Account : {user.email}
                     </MenuItem>
+                    <NavLink
+                      style={{ textDecoration: "none", color: "inherit" }}
+                      to="/post"
+                    >
+                      <MenuItem onClick={handleCloseUserMenu}>
+                        Post Blog
+                      </MenuItem>
+                    </NavLink>
                     <NavLink
                       style={{ textDecoration: "none", color: "inherit" }}
                       to="/dashboard"

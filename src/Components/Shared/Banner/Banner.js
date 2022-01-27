@@ -40,10 +40,10 @@ const Banner = () => {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img src={slider1} alt="" />
+          <img src={slider2} alt="" />
           <div className="bannerFrame">
-           <div className="bannerText">
-                <h1>EVERYDAY URBAN CONCRETE JUNGLE</h1>
+                <div className="bannerText">
+                <h1>AMAZON RAINFOREST EXPERIENCE</h1>
                 <Typography>Lorem ipsum, dolor consectetur adipisicing elit. Possimus eos voluptatem perferendis, <br /> ipsam quia laboriosam suscipit odit doloremque. Cumque, nobis!</Typography>
                 <button className="ourButton">Read More</button>
            </div>
@@ -51,10 +51,10 @@ const Banner = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slider2} alt="" />
+          <img src={slider1} alt="" />
           <div className="bannerFrame">
-                <div className="bannerText">
-                <h1>AMAZON RAINFOREST EXPERIENCE</h1>
+           <div className="bannerText">
+                <h1>EVERYDAY URBAN CONCRETE JUNGLE</h1>
                 <Typography>Lorem ipsum, dolor consectetur adipisicing elit. Possimus eos voluptatem perferendis, <br /> ipsam quia laboriosam suscipit odit doloremque. Cumque, nobis!</Typography>
                 <button className="ourButton">Read More</button>
            </div>
