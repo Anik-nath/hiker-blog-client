@@ -4,6 +4,7 @@ import About from "./Components/Page/About/About";
 import Blogs from "./Components/Page/Blogs/Blogs";
 import Contact from "./Components/Page/Contact/Contact";
 import Destination from "./Components/Page/Destination/Destination";
+import Details from "./Components/Page/Details/Details";
 import Home from "./Components/Page/Home/Home";
 import Login from "./Components/Page/Login/Login";
 import Footer from "./Components/Shared/Footer/Footer";
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<Home></Home>}></Route>
           <Route path="/home" element={<Home></Home>}></Route>
           <Route path="/blogs" element={<PrivateRoute><Blogs></Blogs></PrivateRoute>}></Route>
+          <Route path="/details/:_id" element={<Details></Details>}></Route>
           <Route path="/about" element={<About></About>}></Route>
           <Route path="/contact" element={<Contact></Contact>}></Route>
           <Route path="/destination" element={<Destination></Destination>}></Route>

@@ -7,8 +7,9 @@ import EditIcon from '@mui/icons-material/Edit';
 
 const FeaturedBlog = () => {
     const [blogs, setBlogs] = useState([]);
+
   useEffect(() => {
-    fetch("./fakeBlogs.json")
+    fetch("http://localhost:5000/blogs")
       .then((res) => res.json())
       .then((data) => setBlogs(data));
   }, []);
@@ -20,10 +21,10 @@ const FeaturedBlog = () => {
             >
               <Masonry columnsCount={3} gutter="20px">
                 {blogs.slice(0,10).map((blog) => (
-                  <Link style={{textDecoration:"none"}} to="/">
+                  <Link style={{textDecoration:"none"}} to={`/details/${blog._id}`}>
                   <Paper sx={{pb:4}}>
                     <img
-                      key={blog.blogName}
+                      key={blog._id}
                       src={blog.blogImage}
                       style={{ width: "100%", display: "block" }}
                       alt=""
