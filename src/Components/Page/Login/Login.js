@@ -60,7 +60,7 @@ const Login = () => {
   //   --------------------------
   const handleRegister = (e) => {
     e.preventDefault();
-    createUser(data.email, data.password, location, navigate);
+    createUser(data.email, data.password,data.fullname, location, navigate);
   };
 
   return (

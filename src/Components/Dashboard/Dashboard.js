@@ -18,8 +18,7 @@ import useAuth from '../../Firebase/Hook/useAuth';
 const drawerWidth = 250;
 
 export default function Dashboard(props) {
-    const { signout } = useAuth();
-
+    const { signout ,admin} = useAuth();
   const handleSignOut = () => {
     signout();
   };
@@ -47,7 +46,10 @@ export default function Dashboard(props) {
                                 <ListItemText primary="My Blogs" />
                             </ListItem>
                         </Link>
-                        <Link to="/dashboard/manageblogs" style={{ color: 'inherit', textDecoration: 'none' }}>
+                        {
+                            admin && 
+                       <>
+                       <Link to="/dashboard/manageblogs" style={{ color: 'inherit', textDecoration: 'none' }}>
                             <ListItem button >
                                 <ListItemText primary="Manage Blogs" />
                             </ListItem>
@@ -62,6 +64,8 @@ export default function Dashboard(props) {
                                 <ListItemText primary="Create Blog" />
                             </ListItem>
                         </Link>
+                       </>
+                         }
                     </Box>
                 }
             </List>

@@ -1,6 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Dashboard from "./Components/Dashboard/Dashboard";
+import MakeAdmin from "./Components/Dashboard/MakeAdmin";
+import ManageBlog from "./Components/Dashboard/ManageBlog";
 import MyBLogs from "./Components/Dashboard/MyBLogs";
 import About from "./Components/Page/About/About";
 import Blogs from "./Components/Page/Blogs/Blogs";
@@ -9,6 +11,7 @@ import Destination from "./Components/Page/Destination/Destination";
 import Details from "./Components/Page/Details/Details";
 import Home from "./Components/Page/Home/Home";
 import Login from "./Components/Page/Login/Login";
+import Post from "./Components/Page/Post/Post";
 import Footer from "./Components/Shared/Footer/Footer";
 import Navigation from "./Components/Shared/Navigation/Navigation";
 import ProvideAuth from "./Firebase/Context/ProvideAuth";
@@ -27,6 +30,7 @@ function App() {
           <Route path="/details/:_id" element={<Details></Details>}></Route>
           <Route path="/about" element={<About></About>}></Route>
           <Route path="/contact" element={<Contact></Contact>}></Route>
+          <Route path="/post" element={<Post></Post>}></Route>
           <Route
             path="/dashboard"
             element={
@@ -36,9 +40,9 @@ function App() {
             }
           >
             <Route path="/dashboard" element={<MyBLogs />} />
-            <Route path="/dashboard/manageblogs" element={<MyBLogs />} />
-            <Route path="/dashboard/makeadmin" element={<MyBLogs />} />
-            <Route path="/dashboard/createblog" element={<MyBLogs />} />
+            <Route path="/dashboard/manageblogs" element={<ManageBlog />} />
+            <Route path="/dashboard/createblog" element={<Post />} />
+            <Route path="/dashboard/makeadmin" element={<MakeAdmin />} />
           </Route>
           <Route path="/destination" element={<Destination></Destination>}></Route>
           <Route path="/login" element={<Login></Login>}></Route>
