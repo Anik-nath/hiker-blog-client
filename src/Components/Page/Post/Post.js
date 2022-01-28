@@ -1,20 +1,13 @@
 import { Container, Grid, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import useAuth from "../../../Firebase/Hook/useAuth";
 import frame from "../../../images/header-frame.png";
 
 const Post = () => {
-  // const [services, setService] = useState([]);
   const [data, setData] = useState({});
-
-  //   useEffect(() => {
-  //     const url = "http://localhost:5000/blogs";
-  //     fetch(url)
-  //       .then((res) => res.json())
-  //       .then((data) => setService(data));
-  //   }, []);
-
+const {user} = useAuth();
   //order functionality
   const handleFiled = (e) => {
     const field = e.target.name;
@@ -28,18 +21,21 @@ const Post = () => {
   const handleSubmit = (e) => {
     const posts = {
       ...data,
+      email: user.email,
       blogAuthor: data?.blogAuthor,
       blogName: data?.blogName,
       location: data?.location,
       blogImage: data?.blogImage,
       blogDetails: data?.blogDetails,
+      travelCost: data?.travelCost,
+      rate: data?.rate,
       blogDate: new Date().toLocaleDateString(),
       blogTime: new Date().toLocaleTimeString(),
     };
     console.log(posts);
 
     //now fetch and post data
-    fetch("http://localhost:5000/blogs", {
+    fetch("https://cryptic-lowlands-46261.herokuapp.com/blogs", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -50,7 +46,7 @@ const Post = () => {
       .then((data) => {
         if (data.insertedId) {
           alert("Successfully post your experience");
-          window.location.replace("http://localhost:3000/blogs");
+          window.location.replace("https://cryptic-lowlands-46261.herokuapp.com/blogs");
         }
       });
     // e.preventDefault();
@@ -126,6 +122,22 @@ const Post = () => {
                   fullWidth
                   label="Blogs"
                   name="blogDetails"
+                  onBlur={handleFiled}
+                ></TextField>
+                <TextField
+                  margin="dense"
+                  color="success"
+                  fullWidth
+                  label="Rate Place out of 5"
+                  name="rate"
+                  onBlur={handleFiled}
+                ></TextField>
+                <TextField
+                  margin="dense"
+                  color="success"
+                  fullWidth
+                  label="Cost of travel"
+                  name="travelCost"
                   onBlur={handleFiled}
                 ></TextField>
                 <button onClick={handleSubmit} className="ourButton">

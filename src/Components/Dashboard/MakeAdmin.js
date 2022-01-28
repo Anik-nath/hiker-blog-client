@@ -8,7 +8,7 @@ const MakeAdmin = () => {
   const handleSubmit = (e) => {
     const user = { email };
 
-    fetch("http://localhost:5000/users/admin", {
+    fetch("https://cryptic-lowlands-46261.herokuapp.com/users/admin", {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -34,7 +34,7 @@ const MakeAdmin = () => {
           <Grid style={{ margin: "0 auto" }} item md={6}>
             <Box>
               <TextField
-              type="email"
+                type="email"
                 color="success"
                 margin="dense"
                 fullWidth
@@ -45,9 +45,7 @@ const MakeAdmin = () => {
               <button onClick={handleSubmit} className="ourButton">
                 Post
               </button>
-              {
-                 success && alert("Admin maded succssfully")
-               }
+              {success && alert("Admin maded succssfully")}
             </Box>
           </Grid>
         </Grid>

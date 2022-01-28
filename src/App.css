@@ -55,24 +55,24 @@
   height: 100vh;
   position: relative;
 }
-.swiper-slide .bannerFrame img{
+.swiper-slide .bannerFrame img {
   position: absolute;
   bottom: 0;
   width: 100%;
   height: 100px;
 }
-.swiper-slide .bannerFrame .bannerText{
+.swiper-slide .bannerFrame .bannerText {
   position: absolute;
   color: #fff;
   width: 100%;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
-.swiper-slide .bannerFrame .bannerText h1{
+.swiper-slide .bannerFrame .bannerText h1 {
   font-size: 3rem;
 }
-.ourButton{
+.ourButton {
   border: none;
   outline: none;
   padding: 14px 28px;
@@ -84,15 +84,15 @@
   margin-top: 18px;
   transition: all 0.3s ease;
 }
-.ourButton:hover{
+.ourButton:hover {
   cursor: pointer;
   background-color: #4d8150a2;
 }
-.swiper-pagination-bullet-active{
+.swiper-pagination-bullet-active {
   background-color: #4d8150 !important;
 }
-.pageCover{
-  background: url('./images/blog-2.jpg');
+.pageCover {
+  background: url("./images/blog-2.jpg");
   height: 100vh;
   background-size: cover;
   background-position: center;
@@ -102,7 +102,7 @@
   align-items: center;
   position: relative;
 }
-.pageCoverFrame img{
+.pageCoverFrame img {
   position: absolute;
   bottom: 0%;
   left: 0;
@@ -110,8 +110,8 @@
   min-height: 250px;
   color: #032f2b4f;
 }
-.aboutCover{
-  background: url('./images/about.jpg');
+.aboutCover {
+  background: url("./images/about.jpg");
   height: 100vh;
   background-size: cover;
   background-position: center;
@@ -121,8 +121,8 @@
   align-items: center;
   position: relative;
 }
-.destinationCover{
-  background: url('./images/slider4.jpg');
+.destinationCover {
+  background: url("./images/slider4.jpg");
   height: 100vh;
   background-size: cover;
   background-position: center;
@@ -132,8 +132,8 @@
   align-items: center;
   position: relative;
 }
-.contactCover{
-  background: url('./images/contact.jpg');
+.contactCover {
+  background: url("./images/contact.jpg");
   height: 100vh;
   background-size: cover;
   background-position: center;
@@ -143,16 +143,16 @@
   align-items: center;
   position: relative;
 }
-.navActive{
+.navActive {
   background-color: #4d8150 !important;
 }
-.home-background{
-  background: url('./images/home-back.jpg');
+.home-background {
+  background: url("./images/home-back.jpg");
   height: 100%;
   width: 100%;
 }
-.footer-background{
-  background: url('./images/footer-bg.png');
+.footer-background {
+  background: url("./images/footer-bg.png");
   background-size: cover;
   background-color: #fff;
 }

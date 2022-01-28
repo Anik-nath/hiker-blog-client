@@ -1,70 +1,25 @@
-# Getting Started with Create React App
+# Visit Hiker-Blog
+This project where you view [Live Link](https://hiker-blog-5ea98.web.app/).
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Looking For
+A travel agency is currently looking for a full stack web developer to build their travel web application where the travelers can share their experience with others. 
 
-## Available Scripts
+## Features 
+* Build a web application that shows all the travelers' experiences on the home page. (Feel free to use your design).
 
-In the project directory, you can run:
+* Add a navigation bar with suitable options, a carousel, a sidebar(for top-rated spots), and a footer.
+* The home page will contain the blogs and with pagination (10 blog articles per page).
+With the click of a single blog, the details of that specific travel experience will be shown. The parties may include several information like date, time, location, expense, and rating with stars of the experience. (Feel free to add more information according to your preference).
+* There should be an option to add your own experience on the website(user login needed) . 
+A feature should be implemented to compare the experience based on the information provided. 
+For example, Comparisons can be made on the basis of the review stars or ratings, expense, transportation facilities, and other relevant factors you think.
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Authentication:
+* In order to view someone’s blog on click, the user has to be registered. In this case, enable google sign in, register user and an email verification option after a user is registered as well.
+ 
+## Admin Features
+An admin panel has to be implemented as well which can carry out the following functionalities:
+* Admin can see all blog posts and create, read, update, delete blog posts in real time without page reload.
+* For any submission from the user, admin has to approve and after that the blog will be visible in the UI and in the dashboard it will be marked as approved.
+ * There will be an Admin account that can add more Admins and Admin can post new blog articles that’ll be added dynamically to the home page.
+* Admin’s all activity is protected page after complete log in then can do admin activity. 

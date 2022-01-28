@@ -60,7 +60,7 @@ const Login = () => {
   //   --------------------------
   const handleRegister = (e) => {
     e.preventDefault();
-    createUser(data.email, data.password,data.fullname, location, navigate);
+    createUser(data.email, data.password, data.fullname, location, navigate);
   };
 
   return (
@@ -139,6 +139,7 @@ const Login = () => {
                   onBlur={handleInput}
                   margin="dense"
                   fullWidth
+                  required
                   type="password"
                   name="password"
                   id="password"

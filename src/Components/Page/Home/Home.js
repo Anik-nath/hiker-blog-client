@@ -84,7 +84,7 @@ const Home = () => {
               TOP HIKING TRAILS IN THE PERUVIAN AMAZON RAIN FOREST
               </Typography>
               <small>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis sed autem nisi saepe aliquam. Porro quasi vero harum eum maxime?Lorem ipsum dolor, sit amet consectetur adipisicing elit.</small>
-              <Typography sx={{color:"gray",py:2,display:"flex",alignItems:"center",justifyContent:"center"}} variant="body2"><EditIcon/> by john </Typography>
+              <Typography sx={{color:"gray",py:2,display:"flex",alignItems:"center",justifyContent:"flex-start"}} variant="body2"><EditIcon/> by john </Typography>
              </div>
              
 

@@ -155,11 +155,11 @@ const Navigation = () => {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  
-                  {
-                    user.email ? <Avatar alt="image" src={user.photoURL} />
-                    : <Avatar src="/broken-image.jpg" />
-                  }
+                  {user.email ? (
+                    <Avatar alt="image" src={user.photoURL} />
+                  ) : (
+                    <Avatar src="/broken-image.jpg" />
+                  )}
                 </IconButton>
               </Tooltip>
               <Menu

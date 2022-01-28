@@ -1,17 +1,22 @@
-
-import { Grid, Pagination, Stack, Typography } from "@mui/material";
+import {
+  Grid,
+  LinearProgress,
+  Pagination,
+  Stack,
+  Typography,
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import frame from "../../../images/header-frame.png";
 import sidebarImg from "../../../images/sidebar-img.png";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { Box } from "@mui/system";
-import EditIcon from '@mui/icons-material/Edit';
+import EditIcon from "@mui/icons-material/Edit";
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/blogs")
+    fetch("https://cryptic-lowlands-46261.herokuapp.com/blogs")
       .then((res) => res.json())
       .then((data) => setBlogs(data));
   }, []);
@@ -42,32 +47,60 @@ const Blogs = () => {
           <Grid item xs={12} sm={6} md={4} key={blogs.name}>
             <Box sx={{ textAlign: "left" }}>
               <img src={sidebarImg} alt="" />
-              <Typography sx={{fontWeight:"bold",pb:4}} variant="h5">WANDERLUST BLOG</Typography>
-              <Typography variant="body">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti, similique.</Typography>
+              <Typography sx={{ fontWeight: "bold", pb: 4 }} variant="h5">
+                WANDERLUST BLOG
+              </Typography>
+              <Typography variant="body">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Corrupti, similique.
+              </Typography>
             </Box>
           </Grid>
           <Grid item xs={12} sm={6} md={8} key={blogs.name}>
             <ResponsiveMasonry
               columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
             >
-              <Masonry columnsCount={3} gutter="10px">
-                {blogs.map((blog) => (
-                   <Link style={{textDecoration:"none"}} to={`/details/${blog._id}`}>
-                  <Box sx={{pb:4}}>
-                    <img
-                      key={blog._id}
-                      src={blog.blogImage}
-                      style={{ width: "100%", display: "block" }}
-                      alt=""
-                    />
-                    <Typography sx={{color:"gray",py:2,display:"flex",alignItems:"center",justifyContent:"center"}} variant="body2"><EditIcon/> by {blog.blogAuthor}</Typography>
-                    <Typography sx={{color:"gray",textTransform:"justify"}} variant="body">{blog.blogName}</Typography>
-                  </Box>
-                  </Link>
-                ))}
-              </Masonry>
+              {blogs.length === 0 ? (
+                <LinearProgress color="success" />
+              ) : (
+                <Masonry columnsCount={3} gutter="10px">
+                  {blogs.map((blog) => (
+                    <Link
+                      style={{ textDecoration: "none" }}
+                      to={`/details/${blog._id}`}
+                    >
+                      <Box sx={{ pb: 4 }}>
+                        <img
+                          key={blog._id}
+                          src={blog.blogImage}
+                          style={{ width: "100%", display: "block" }}
+                          alt=""
+                        />
+                        <Typography
+                          sx={{
+                            color: "gray",
+                            py: 2,
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                          variant="body2"
+                        >
+                          <EditIcon /> by {blog.blogAuthor}
+                        </Typography>
+                        <Typography
+                          sx={{ color: "gray", textTransform: "justify" }}
+                          variant="body"
+                        >
+                          {blog.blogName}
+                        </Typography>
+                      </Box>
+                    </Link>
+                  ))}
+                </Masonry>
+              )}
             </ResponsiveMasonry>
-            <Box sx={{mt:10,display:"flex",justifyContent:"center"}}>
+            <Box sx={{ mt: 10, display: "flex", justifyContent: "center" }}>
               <Stack spacing={2}>
                 <Pagination count={10} />
               </Stack>
